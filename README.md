@@ -1,30 +1,15 @@
 ========================================================
-going home by raven ruiz
+Procedural Map Generation using Noise for CMPM 118
 
-fullscreen recommended
-
-based on Jim Whitehead's StarterPlatformer:
-https://github.com/JimWhiteheadUCSC/StarterPlatformer
+> generates map using perlin noise
 
 ========================================================
 Visual assets:
-https://kenney.nl/assets/pixel-platformer
-https://kenney.nl/assets/pixel-platformer-industrial-expansion
-https://kenney.nl/assets/pixel-platformer-blocks
+> https://kenney.nl/assets/map-pack
 
 ========================================================
-SFX assets:
-https://kenney.nl/assets/sci-fi-sounds
-https://kenney.nl/assets/impact-sounds
-https://kenney.nl/assets/digital-audio
+uses noisejs by Seph Hentle:
+> https://github.com/josephg/noisejs
 
 ========================================================
-Particles:
-https://kenney.nl/assets/particle-pack
 
-========================================================
-Font:
-https://www.fontspace.com/public-pixel-font-f72305
-
-========================================================
-background images + background music by yours truly :P
