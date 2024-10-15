@@ -15,8 +15,8 @@ class Load extends Phaser.Scene {
 
         document.getElementById('description').innerHTML = 
             `<h2>press R to regenerate map<br>
-            press LEFT KEY to decrease sample window<br>
-            press RIGHT KEY to increase sample window</h2>`
+            press < to decrease sample window<br>
+            press > to increase sample window</h2>`
     }
 
     // Never get here since a new scene is started in create()
