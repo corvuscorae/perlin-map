@@ -52,8 +52,8 @@ class PerlinMap extends Phaser.Scene {
             {height: 5.5, texture: [this.SNOWMAN, this.SNOWTREE], probability: 0.1},
             {height: 5, texture: [this.SNOWTREE], probability: 0.15},
             {height: 4, texture: [this.SNOWTREE, this.BOULDER], probability: 0.1},
-            {height: 3, texture: [this.BOULDER], probability: 0.05},
-            {height: 2, texture: [this.TREE, this.BUSH], probability: 0.2},
+            {height: 3, texture: [this.BOULDER], probability: 0.01},
+            {height: 2, texture: [this.TREE, this.BUSH], probability: 0.15},
             {height: -1, texture: [-1], probability: 1},
             ]
         }
