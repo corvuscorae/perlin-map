@@ -29,31 +29,31 @@ class PerlinMap extends Phaser.Scene {
 
         // tile data
         this.snow = {
-            textures: [{height: 5, texture: [this.SNOW], probability: 1,}],
+            tiles: [{height: 5, texture: [this.SNOW], probability: 1,}],
             hasTransitions: true
         }
         this.rock = {
-            textures: [{height: 4, texture: [this.ROCK], probability: 1}],
+            tiles: [{height: 4, texture: [this.ROCK], probability: 1}],
             hasTransitions: true
         }
         this.grass = {
-            textures: [{height: 2.5, texture: [this.GRASS], probability: 1}],
+            tiles: [{height: 2.5, texture: [this.GRASS], probability: 1}],
             hasTransitions: true
         }
         this.sand = {
-            textures: [{height: 1, texture: [this.SAND], probability: 1}],
+            tiles: [{height: 1, texture: [this.SAND], probability: 1}],
             hasTransitions: true
         }
         this.water = {
-            textures: [{height: -1, texture: [this.WATER], probability: 1}]
+            tiles: [{height: -1, texture: [this.WATER], probability: 1}]
         }
         this.stuff = {
-            textures: [
+            tiles: [
             {height: 5.5, texture: [this.SNOWMAN, this.SNOWTREE], probability: 0.1},
-            {height: 5, texture: [this.SNOWTREE], probability: 0.1},
+            {height: 5, texture: [this.SNOWTREE], probability: 0.15},
             {height: 4, texture: [this.SNOWTREE, this.BOULDER], probability: 0.1},
             {height: 3, texture: [this.BOULDER], probability: 0.05},
-            {height: 2, texture: [this.TREE, this.BUSH], probability: 0.25},
+            {height: 2, texture: [this.TREE, this.BUSH], probability: 0.2},
             {height: -1, texture: [-1], probability: 1},
             ]
         }
@@ -83,22 +83,27 @@ class PerlinMap extends Phaser.Scene {
                 let rand2 = Math.abs(noise.perlin2(i / this.sampleSize, j / this.sampleSize));
 
                 // map pVals to tile textures                
-                for(const tile of tiles){
-                    console.log(pVal)
-                    console.log(tile)
-                    if(pVal <= tile.height){    // if tile doesn't go in this height range...
-                        pVal = -1;              // ...put nothing!
-                        continue
-                    }
-                    else{                       // if tile DOES go in this height range...
+                //for(const tile of tiles){
+                for(let t = 0; t < tiles.length; t++){
+                    let tile = tiles[t];
+
+                   if(pVal > tile.height){
                         if(tile.probability >= rand1){ 
-                            rand2 = Math.floor(rand2 * 10 * tile.texture.length);
-                            pVal = tile.texture[Math.floor(rand2 % tile.texture.length)];
+                            rand2 = Math.ceil(rand2 * 10 * tile.texture.length);
+                            pVal = tile.texture[Math.ceil(rand2 % tile.texture.length)];
                         }
                         else pVal = -1;
                         break;
-                    }
+                   }
+                   else{
+                        if(tiles.length > 1 ) continue;
+                        else {pVal = -1; break }
+                   }
                 }
+
+                // check if pVal has a decimal place. if so, it was never mapped to a tile and thus should be empty
+                let check = (pVal - Math.floor(pVal)) !== 0
+                if(check) pVal = -1;
 
                 result[i][j] = pVal;
             }
@@ -192,7 +197,7 @@ class PerlinMap extends Phaser.Scene {
     //      and update perlin values to include transition tiles */
     mapArray(textureData){
         let result = {
-            perlin: this.perlinValues(textureData.textures), // make perlin array
+            perlin: this.perlinValues(textureData.tiles), // make perlin array
             bitmask: []
         };
 
@@ -241,7 +246,7 @@ class PerlinMap extends Phaser.Scene {
     // handles sampleSize, seed, and layers init */
     create() {  
         this.sampleSize = 10;
-        this.seed = Math.random();
+        this.seed = 100 //Math.random();//////////
 
         this.allLayers = [
             {key: this.water, layer: this.generateLayer(this.mapArray(this.water), this.tileset)},
