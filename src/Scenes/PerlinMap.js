@@ -246,7 +246,7 @@ class PerlinMap extends Phaser.Scene {
     // handles sampleSize, seed, and layers init */
     create() {  
         this.sampleSize = 10;
-        this.seed = 100 //Math.random();//////////
+        this.seed = Math.random();
 
         this.allLayers = [
             {key: this.water, layer: this.generateLayer(this.mapArray(this.water), this.tileset)},
