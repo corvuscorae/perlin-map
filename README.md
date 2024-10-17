@@ -7,3 +7,6 @@ Visual assets:
 
 uses noisejs by Seph Hentle:
 > https://github.com/josephg/noisejs
+
+bitmaksing technique refernce:
+> https://code.tutsplus.com/how-to-use-tile-bitmasking-to-auto-tile-your-level-layouts--cms-25673t */
